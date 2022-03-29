@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*@model List<Bowler>*@
+@model ViewModel
+
+@*Display Team at the top*@
+<h1 class="text-center text-info">@ViewBag.Header</h1>
+
+
+<table class="table table-bordered table-striped">
+    <thead class="font-weight-bold bold">
+        <tr>
+            <td>First Name</td>
+            <td>Middle Initial</td>
+            <td>Last Name</td>
+            <td>Address</td>
+            <td>City</td>
+            <td>State</td>
+            <td>Zip</td>
+            <td>Phone Number</td>
+            <td>Team Name</td>
+        </tr>
+    </thead>
+
+    @*Display bowler information*@
+    <tbody>
+        @foreach (var x in Model.Bowlers)
+        {
+            <tr>
+                <td>@x.BowlerFirstName</td>
+                <td>@x.BowlerMiddleInit</td>
+                <td>@x.BowlerLastName</td>
+                <td>@x.BowlerAddress</td>
+                <td>@x.BowlerCity</td>
+                <td>@x.BowlerState</td>
+                <td>@x.BowlerZip</td>
+                <td>@x.BowlerPhoneNumber</td>
+                <td>@x.Team.TeamName</td>
+                <td><a class="btn btn-info text-white" asp-controller="Home" asp-action="EditBowler" asp-route-id="@x.BowlerID">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="DeleteBowler" asp-route-id="@x.BowlerID">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+@*Add a bowler*@
+<a class="btn btn-info" asp-controller="Home" asp-action="AddBowler" role="button">Add Bowler</a>
